@@ -13,6 +13,15 @@ CollabAI enforces a strict execution contract:
 2. Execute exactly one step per turn.
 3. Halt execution and wait for human validation before proceeding to the next step.
 
+## Token Efficiency
+
+Autonomous multi-step agents frequently trigger expensive debugging loops. If step 1 fails silently, subsequent steps generate broken code, causing the model to burn tens of thousands of tokens trying to self-correct a flawed foundation.
+
+CollabAI reduces net token consumption:
+- **Eliminates self-correction spirals:** Catching mistakes immediately prevents 20,000+ token repair loops.
+- **Minimizes expensive output tokens:** Generates concise 150-300 token responses per step rather than speculative multi-file dumps (output tokens cost 3x to 5x more than input tokens).
+- **Optimized for prompt caching:** Turn-by-turn context reads utilize modern prompt caching (80-90% cheaper input rates), keeping overhead low while eliminating wasted output.
+
 ## Installation
 
 ### Google Antigravity
