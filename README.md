@@ -1,59 +1,48 @@
-# 🤝 CollabAI (`collab-step`)
+# CollabAI (collab-step)
 
-> **Semi-Manual Human-in-the-Loop Protocol for AI Coding Agents**  
-> Stop hallucinations and compounding errors before they happen.
+A human-in-the-loop (HITL) step-locked protocol for AI coding agents.
 
-Even frontier AI models hallucinate. When autonomous agents attempt to plan, execute, and refactor 10 files in a single breath, a minor error in Step 1 inevitably cascades into a disaster by Step 5.
+## Problem
 
-**CollabAI** enforces a strict, step-locked execution contract between human and AI: **one step at a time, validated by human checkpoint before moving forward.**
+Frontier LLMs frequently hallucinate and compound errors when executing multi-step tasks autonomously. An undetected error in step 1 cascades across subsequent files and tool calls, requiring tedious manual rollbacks.
 
----
+## Solution
 
-## ⚡ How It Works
+CollabAI enforces a strict execution contract:
+1. Break down the task into an explicit, sequential roadmap.
+2. Execute exactly one step per turn.
+3. Halt execution and wait for human validation before proceeding to the next step.
 
-1. **Granular Roadmap:** The agent breaks down your objective into bite-sized, sequential steps.
-2. **Single-Step Execution:** It executes *only* the current step.
-3. **Hard Pause:** The agent is forbidden from auto-continuing. It stops and asks you to test/validate.
-4. **Human Checkpoint:** You review. If good, you give the green light. If broken, you correct it immediately without polluting the rest of the workflow.
+## Installation
 
----
-
-## 📦 Installation & Compatibility
-
-### 1. Google Antigravity
-Clone or place this folder into your global Antigravity skills directory:
+### Google Antigravity
+Clone into your global skills directory:
 ```bash
-# Global skills directory
 cd ~/.gemini/config/skills/
 git clone https://github.com/farrosfr/collabai.git collab-step
 ```
 
-### 2. Claude Code
-Copy `SKILL.md` into your personal Claude Code skills path:
+### Claude Code
+Copy `SKILL.md` to your Claude skills directory:
 ```bash
 mkdir -p ~/.claude/skills/collab-step
 cp SKILL.md ~/.claude/skills/collab-step/
 ```
 
-### 3. Cursor & Windsurf
-Save the instructions inside your project's rule file:
-- File: `.cursor/rules/collab-step.mdc` or `.cursorrules`
+### Cursor & Windsurf
+Add the contents of `SKILL.md` to your project rules:
+- `.cursor/rules/collab-step.mdc` or `.cursorrules`
 
-### 4. OpenAI Codex / Custom Agents
-Include `SKILL.md` directly into your agent's system prompt or tool context.
+### OpenAI Codex / Other Agents
+Include `SKILL.md` directly into the system instructions or agent context.
 
----
+## Contributing
 
-## 🤝 Contributing
+Pull requests and issues are welcome for:
+- Improving prompt guardrails against autonomous chaining
+- Compatibility guides for other agents (Aider, Cline, Roo Code)
+- Documentation improvements
 
-Contributions are very welcome! If you have ideas for:
-- Improving prompt guardrails against stubborn models
-- Adapting the protocol for other IDEs / Agents (Cline, Aider, Roo Code, etc.)
-- Translating documentation
+## License
 
-Feel free to open an Issue or submit a Pull Request!
-
----
-
-## 📄 License
-MIT License © 2026 Mochammad Farros Fatchur Roji (FarrosFR)
+MIT License (c) 2026 Mochammad Farros Fatchur Roji (FarrosFR)
